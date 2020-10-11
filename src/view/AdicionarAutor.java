@@ -1,10 +1,17 @@
 package view;
 
+import control.ControleAutor;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import model.Autor;
 
 public class AdicionarAutor extends javax.swing.JFrame {
+    
+    ControleAutor controleAutor;
+    Autor autor;
 
     public AdicionarAutor() {
+        controleAutor = new ControleAutor();
         initComponents();
     }
 
@@ -18,8 +25,6 @@ public class AdicionarAutor extends javax.swing.JFrame {
     private void initComponents() {
 
         jLblTitulo = new javax.swing.JLabel();
-        jLblAutorID = new javax.swing.JLabel();
-        jTxtAutorID = new javax.swing.JTextField();
         jLblNome = new javax.swing.JLabel();
         jTxtNome = new javax.swing.JTextField();
         jLblSobrenome = new javax.swing.JLabel();
@@ -32,15 +37,6 @@ public class AdicionarAutor extends javax.swing.JFrame {
         jLblTitulo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLblTitulo.setText("Adicionar Autor");
 
-        jLblAutorID.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLblAutorID.setText("ID do Autor:");
-
-        jTxtAutorID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtAutorIDActionPerformed(evt);
-            }
-        });
-
         jLblNome.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLblNome.setText("Nome:");
 
@@ -49,6 +45,11 @@ public class AdicionarAutor extends javax.swing.JFrame {
 
         jBtnAdicionar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnAdicionar.setText("Adicionar Autor");
+        jBtnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAdicionarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,14 +61,12 @@ public class AdicionarAutor extends javax.swing.JFrame {
                         .addGap(268, 268, 268)
                         .addComponent(jLblTitulo))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
+                        .addGap(62, 62, 62)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLblAutorID)
                             .addComponent(jLblNome)
                             .addComponent(jLblSobrenome))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTxtAutorID, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTxtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
                             .addComponent(jTxtSobrenome))))
                 .addContainerGap(262, Short.MAX_VALUE))
@@ -81,14 +80,9 @@ public class AdicionarAutor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLblTitulo)
-                .addGap(62, 62, 62)
+                .addGap(115, 115, 115)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLblAutorID)
-                            .addComponent(jTxtAutorID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
-                        .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLblNome))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -100,11 +94,22 @@ public class AdicionarAutor extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTxtAutorIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtAutorIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtAutorIDActionPerformed
+    private void jBtnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAdicionarActionPerformed
+        autor = new Autor();
+        
+        /*autor.setIdAutor(Integer.parseInt(jTxtAutorID.getText()));*/
+        autor.setNome(jTxtNome.getText());
+        autor.setfNome(jTxtSobrenome.getText());
+        
+        if(controleAutor.gravarAutor(autor) == 1){
+            JOptionPane.showMessageDialog(null, "Autor cadastrado com sucesso");
+        }else{
+            JOptionPane.showMessageDialog(null, "Não foi possivel gravar o autor!");
+        }
+    }//GEN-LAST:event_jBtnAdicionarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,11 +149,9 @@ public class AdicionarAutor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAdicionar;
-    private javax.swing.JLabel jLblAutorID;
     private javax.swing.JLabel jLblNome;
     private javax.swing.JLabel jLblSobrenome;
     private javax.swing.JLabel jLblTitulo;
-    private javax.swing.JTextField jTxtAutorID;
     private javax.swing.JTextField jTxtNome;
     private javax.swing.JTextField jTxtSobrenome;
     // End of variables declaration//GEN-END:variables

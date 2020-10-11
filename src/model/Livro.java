@@ -1,19 +1,19 @@
 package model;
 
 public class Livro {
-    private String titulo;
+    private String title;
     private String isbn;
-    private Integer idEditora;
-    private Float preco;
+    private Editora publisher;
+    private Float price;
 
     public Livro(){}
-    
-    public String getTitulo() {
-        return titulo;
+
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getIsbn() {
@@ -24,21 +24,19 @@ public class Livro {
         this.isbn = isbn;
     }
 
-    public Integer getidEditora() {
-        return idEditora;
+    public Editora getPublisher() {
+        return publisher;
     }
 
-    public void setIdEditora(Integer nomeEditora) {
-        this.idEditora = nomeEditora;
-    }
-    
-    public Float getPreco() {
-        return preco;
+    public void setPublisher(Editora publisher) {
+        this.publisher = publisher;
     }
 
-    public void setPreco(Float preco) {
-        this.preco = preco;
+    public Float getPrice() {
+        return price;
     }
-    
-    
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
 }

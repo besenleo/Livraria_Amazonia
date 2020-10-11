@@ -1,18 +1,33 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "authors")
 public class Autor {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "author_id")
     private Integer idAutor;
+    
+    @Column(name = "name")
     private String nome;
-    private String fnome;
+    
+    @Column(name = "fname")
+    private String fNome;
     
     public Autor(){}
 
-    public Integer getId() {
+    public Integer getIdAutor() {
         return idAutor;
     }
 
-    public void setId(Integer idAutor) {
+    public void setIdAutor(Integer idAutor) {
         this.idAutor = idAutor;
     }
 
@@ -24,11 +39,16 @@ public class Autor {
         this.nome = nome;
     }
 
-    public String getFnome() {
-        return fnome;
+    public String getfNome() {
+        return fNome;
     }
 
-    public void setFnome(String fnome) {
-        this.fnome = fnome;
+    public void setfNome(String fNome) {
+        this.fNome = fNome;
+    }
+    
+    @Override
+    public String toString(){
+        return this.nome;
     }
 }

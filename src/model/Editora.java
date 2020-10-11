@@ -2,29 +2,29 @@ package model;
 
 
 public class Editora {
-    private Integer idEditora;
-    private String nome;
+    private Integer publisherId;
+    private String name;
     private String url;
 
     
     public Editora(){}
-    
-    public Integer getIdEditora() {
-        return idEditora;
+
+    public Integer getPublisherId() {
+        return publisherId;
     }
 
-    public void setIdEditora(Integer idEditora) {
-        this.idEditora = idEditora;
+    public void setPublisherId(Integer publisherId) {
+        this.publisherId = publisherId;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
-
+   
     public String getUrl() {
         return url;
     }
