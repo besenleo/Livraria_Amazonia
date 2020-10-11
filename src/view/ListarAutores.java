@@ -1,8 +1,16 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.TableModel;
+import control.ControleAutor;
+import javax.swing.table.DefaultTableModel;
+import model.Autor;
 
 public class ListarAutores extends javax.swing.JFrame {
-
+    
+    ControleAutor controleAutor = new ControleAutor();
+    Autor autor;
 
     public ListarAutores() {
         initComponents();
@@ -71,7 +79,16 @@ public class ListarAutores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        // TODO add your handling code here:
+        List listAutor = new ArrayList();
+        listAutor = controleAutor.carregarAutores();
+        
+        DefaultTableModel dtm = (DefaultTableModel) this.jTableAutores.getModel();
+        dtm.setRowCount(0);
+        for (Object autor : listAutor){
+            Autor a = (Autor) autor;
+            Object[] obj = new Object[]{a.getIdAutor(), a.getNome(), a.getfNome()};
+            dtm.addRow(obj);
+        }
     }//GEN-LAST:event_formWindowActivated
 
     /**
