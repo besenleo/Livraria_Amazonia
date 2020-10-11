@@ -40,6 +40,8 @@ public class AdicionarAutor extends javax.swing.JFrame {
         jLblNome.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLblNome.setText("Nome:");
 
+        jTxtNome.setToolTipText("");
+
         jLblSobrenome.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLblSobrenome.setText("Sobrenome:");
 
@@ -101,8 +103,10 @@ public class AdicionarAutor extends javax.swing.JFrame {
         autor = new Autor();
         
         /*autor.setIdAutor(Integer.parseInt(jTxtAutorID.getText()));*/
-        autor.setNome(jTxtNome.getText());
-        autor.setfNome(jTxtSobrenome.getText());
+        System.out.println(jTxtNome.getText() + jTxtSobrenome.getText());
+        
+        autor.setNome(jTxtNome.getText().trim());
+        autor.setfNome(jTxtSobrenome.getText().trim());
         
         if(controleAutor.gravarAutor(autor) == 1){
             JOptionPane.showMessageDialog(null, "Autor cadastrado com sucesso");

@@ -43,6 +43,11 @@ public class MenuAutores extends javax.swing.JFrame {
 
         jBtnRemover.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnRemover.setText("Remover Autor");
+        jBtnRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnRemoverActionPerformed(evt);
+            }
+        });
 
         jBtnListar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnListar.setText("Listar Autores");
@@ -54,6 +59,11 @@ public class MenuAutores extends javax.swing.JFrame {
 
         jBtnEditar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnEditar.setText("Editar Autor");
+        jBtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEditarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,6 +114,16 @@ public class MenuAutores extends javax.swing.JFrame {
         JFrame adicionarAutor = new AdicionarAutor();
         adicionarAutor.setVisible(true);
     }//GEN-LAST:event_jBtnAdicionarActionPerformed
+
+    private void jBtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarActionPerformed
+        JFrame editarAutor = new EditarAutor();
+        editarAutor.setVisible(true);
+    }//GEN-LAST:event_jBtnEditarActionPerformed
+
+    private void jBtnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRemoverActionPerformed
+        JFrame excluirAutor = new ExcluirAutor();
+        excluirAutor.setVisible(true);
+    }//GEN-LAST:event_jBtnRemoverActionPerformed
 
     /**
      * @param args the command line arguments

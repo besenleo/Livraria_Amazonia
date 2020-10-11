@@ -15,6 +15,7 @@ public class ControleAutor {
     public int gravarAutor(Autor autor){
         try{
             acessohibernateautor.gravar(autor);
+            System.out.println(autor);
             return 1;
         }catch (HibernateException e){
             e.printStackTrace();
@@ -22,9 +23,9 @@ public class ControleAutor {
         }
     }
     
-    public List carregarAutor(){
+    public List carregarAutores(){
         try{
-            return acessohibernateautor.carregarTudoOrdenado(Autor.class, "name");
+            return acessohibernateautor.carregarTudoOrdenado(Autor.class, "nome");
         }catch (HibernateException e){ 
             e.printStackTrace();
             return null;

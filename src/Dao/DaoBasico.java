@@ -17,7 +17,8 @@ public class DaoBasico {
     public void gravar(Object obj) throws HibernateException {
         Session session = hibernateConfig.openSession();
         Transaction transaction = session.beginTransaction();
-        session.save(obj);transaction.commit();
+        session.save(obj);
+        transaction.commit();
         session.close();
     }
     
