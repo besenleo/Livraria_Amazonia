@@ -117,7 +117,7 @@ public class ExcluirAutor extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Autor não encontrado");
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Selecione um Autor");
+            JOptionPane.showMessageDialog(null, "Selecione um Autor!");
         }    
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
