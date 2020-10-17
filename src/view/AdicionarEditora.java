@@ -1,9 +1,15 @@
 package view;
 
+import control.ControleEditora;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import model.Editora;
 
 public class AdicionarEditora extends javax.swing.JFrame {
 
+    Editora editora;
+    ControleEditora controleEditora;
+    
     public AdicionarEditora() {
         initComponents();
     }
@@ -18,8 +24,6 @@ public class AdicionarEditora extends javax.swing.JFrame {
     private void initComponents() {
 
         jLblTitulo = new javax.swing.JLabel();
-        jLblEditoraID = new javax.swing.JLabel();
-        jTxtEditoraID = new javax.swing.JTextField();
         jLblNome = new javax.swing.JLabel();
         jTxtNome = new javax.swing.JTextField();
         jLblURL = new javax.swing.JLabel();
@@ -32,15 +36,6 @@ public class AdicionarEditora extends javax.swing.JFrame {
         jLblTitulo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLblTitulo.setText("Adicionar Editora");
 
-        jLblEditoraID.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLblEditoraID.setText("ID do Editora:");
-
-        jTxtEditoraID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxtEditoraIDActionPerformed(evt);
-            }
-        });
-
         jLblNome.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLblNome.setText("Nome:");
 
@@ -49,6 +44,11 @@ public class AdicionarEditora extends javax.swing.JFrame {
 
         jBtnAdicionar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnAdicionar.setText("Adicionar Editora");
+        jBtnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAdicionarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,14 +60,12 @@ public class AdicionarEditora extends javax.swing.JFrame {
                         .addGap(268, 268, 268)
                         .addComponent(jLblTitulo))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
+                        .addGap(111, 111, 111)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLblEditoraID)
                             .addComponent(jLblNome)
                             .addComponent(jLblURL))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTxtEditoraID, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTxtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
                             .addComponent(jTxtURL))))
                 .addContainerGap(252, Short.MAX_VALUE))
@@ -81,14 +79,9 @@ public class AdicionarEditora extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLblTitulo)
-                .addGap(62, 62, 62)
+                .addGap(115, 115, 115)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLblEditoraID)
-                            .addComponent(jTxtEditoraID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
-                        .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTxtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLblNome))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -103,9 +96,18 @@ public class AdicionarEditora extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTxtEditoraIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtEditoraIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTxtEditoraIDActionPerformed
+    private void jBtnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAdicionarActionPerformed
+        editora = new Editora();
+        
+        editora.setName(jTxtNome.getText());
+        editora.setUrl(jTxtURL.getText());
+        
+        if(controleEditora.gravarEditora(editora) == 1){
+            JOptionPane.showMessageDialog(null, "Editora cadastrada com sucesso!");
+        }else{
+            JOptionPane.showMessageDialog(null, "Não foi possivel cadastrar a editora!");
+        }
+    }//GEN-LAST:event_jBtnAdicionarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,11 +149,9 @@ public class AdicionarEditora extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAdicionar;
-    private javax.swing.JLabel jLblEditoraID;
     private javax.swing.JLabel jLblNome;
     private javax.swing.JLabel jLblTitulo;
     private javax.swing.JLabel jLblURL;
-    private javax.swing.JTextField jTxtEditoraID;
     private javax.swing.JTextField jTxtNome;
     private javax.swing.JTextField jTxtURL;
     // End of variables declaration//GEN-END:variables
