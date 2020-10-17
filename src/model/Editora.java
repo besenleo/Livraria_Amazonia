@@ -1,9 +1,26 @@
 package model;
 
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name = "publishers")
 public class Editora {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "publisher_id")
     private Integer publisherId;
+    
+    @Column(name = "name")
     private String name;
+    
+    @Column(name = "url")
     private String url;
 
     
