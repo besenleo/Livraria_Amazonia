@@ -1,8 +1,17 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import control.ControleEditora;
+import model.Editora;
+
 
 public class ListarEditoras extends javax.swing.JFrame {
 
+    Editora editora;
+    ControleEditora controleEditora = new ControleEditora();
+    
     public ListarEditoras() {
         initComponents();
     }
@@ -21,6 +30,11 @@ public class ListarEditoras extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jTableAutores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -59,6 +73,19 @@ public class ListarEditoras extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        List listEditora = new ArrayList();
+        listEditora = controleEditora.carregarEditora();
+        
+        DefaultTableModel dtm = (DefaultTableModel) this.jTableAutores.getModel();
+        dtm.setRowCount(0);
+        for (Object editora : listEditora){
+            Editora e = (Editora) editora;
+            Object[] obj = new Object[]{e.getIdEditora(), e.getNome(), e.getUrl()};
+            dtm.addRow(obj);
+        }
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments

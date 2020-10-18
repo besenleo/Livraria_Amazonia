@@ -26,7 +26,7 @@ public class ControleEditora {
     
     public List carregarEditora(){
         try{
-            return acessoHibernateEditora.carregarTudoOrdenado(Editora.class, "name");
+            return acessoHibernateEditora.carregarTudoOrdenado(Editora.class, "nome");
         }catch (HibernateException e){ 
             e.printStackTrace();
             return null;

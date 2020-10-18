@@ -49,6 +49,10 @@ public class Autor {
     
     @Override
     public String toString(){
-        return this.nome;
+        String valor = "";
+        valor += this.fNome;
+        valor += ", ";
+        valor += this.nome;
+        return valor;
     }
 }
