@@ -11,6 +11,7 @@ public class AdicionarEditora extends javax.swing.JFrame {
     ControleEditora controleEditora;
     
     public AdicionarEditora() {
+        controleEditora = new ControleEditora();
         initComponents();
     }
 
@@ -99,7 +100,7 @@ public class AdicionarEditora extends javax.swing.JFrame {
     private void jBtnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAdicionarActionPerformed
         editora = new Editora();
         
-        editora.setName(jTxtNome.getText());
+        editora.setNome(jTxtNome.getText());
         editora.setUrl(jTxtURL.getText());
         
         if(controleEditora.gravarEditora(editora) == 1){

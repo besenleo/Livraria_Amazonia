@@ -53,10 +53,20 @@ public class MenuEditoras extends javax.swing.JFrame {
 
         jBtnRemover.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnRemover.setText("Remover Editora");
+        jBtnRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnRemoverActionPerformed(evt);
+            }
+        });
 
         jBtnEditar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnEditar.setText("Editar Editora");
         jBtnEditar.setBorder(null);
+        jBtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEditarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,6 +116,16 @@ public class MenuEditoras extends javax.swing.JFrame {
         JFrame adicionarEditora = new AdicionarEditora();
         adicionarEditora.setVisible(true);
     }//GEN-LAST:event_jBtnAdicionarActionPerformed
+
+    private void jBtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarActionPerformed
+        JFrame editarEditora = new EditarEditora();
+        editarEditora.setVisible(true);
+    }//GEN-LAST:event_jBtnEditarActionPerformed
+
+    private void jBtnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRemoverActionPerformed
+        JFrame excluirEditora = new ExcluirEditora();
+        excluirEditora.setVisible(true);
+    }//GEN-LAST:event_jBtnRemoverActionPerformed
 
     /**
      * @param args the command line arguments
