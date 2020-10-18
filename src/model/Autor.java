@@ -1,15 +1,24 @@
 package model;
 
+import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.ManyToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import java.util.Set;
+import java.util.HashSet;
+import javax.persistence.FetchType;
+
 
 @Entity
 @Table(name = "authors")
-public class Autor {
+public class Autor implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "author_id")
@@ -21,7 +30,14 @@ public class Autor {
     @Column(name = "fname")
     private String fNome;
     
+    @ManyToMany(mappedBy = "autores", targetEntity = Livro.class, cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    Set<Livro> livros = new HashSet<>();
+    
+    
+    
     public Autor(){}
+    
+    
 
     public Integer getIdAutor() {
         return idAutor;
@@ -47,12 +63,20 @@ public class Autor {
         this.fNome = fNome;
     }
     
+    public Set<Livro> getLivros() {
+        return livros;
+    }
+
+    public void setLivros(Set<Livro> livros) {
+        this.livros = livros;
+    }
+    
     @Override
     public String toString(){
         String valor = "";
-        valor += this.fNome;
-        valor += ", ";
         valor += this.nome;
+        valor += " ";
+        valor += this.fNome;
         return valor;
     }
 }

@@ -141,6 +141,7 @@ public class EditarAutor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarActionPerformed
+        // Editando o conteúdo do autor selecionado na JList
         DefaultListModel dlm = (DefaultListModel) jListAutores.getModel();
         autor = (Autor) dlm.getElementAt(jListAutores.getSelectedIndex());
         if (autor != null) {
@@ -158,28 +159,27 @@ public class EditarAutor extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnEditarActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // Adicionando conteúdo na JList de autores
         DefaultListModel listModel = new DefaultListModel();
-        List listDepartamento = new ArrayList();
-        listDepartamento = controleAutor.carregarAutores();
-        if (listDepartamento != null) {
-            Iterator i = listDepartamento.iterator();
+        List listAutor = new ArrayList();
+        listAutor = controleAutor.carregarAutores();
+        if (listAutor != null) {
+            Iterator i = listAutor.iterator();
             while (i.hasNext()) {
                 Autor deptList = (Autor) i.next();
                 listModel.addElement(deptList);
             }
             jListAutores.setModel(listModel);
-        } 
+        }
     }//GEN-LAST:event_formWindowActivated
 
     private void jListAutoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListAutoresMouseClicked
+        //Adicionando os valores do objeto selecionado na JList dos autores nos TextFields
         int index = jListAutores.getSelectedIndex();
         if (index != -1){  
         
             DefaultListModel dlm = (DefaultListModel) jListAutores.getModel();
             autor = (Autor) dlm.getElementAt(index);
-        
-            jTxtNome.setText("");
-            jTxtSobrenome.setText("");
         
             if (autor != null) {
                 jTxtNome.setText(autor.getNome());

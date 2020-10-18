@@ -1,6 +1,6 @@
 package view;
 
-import control.ControleEditora;
+import control.ControleLivro;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -8,14 +8,15 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Editora;
+import model.Livro;
 
-public class ExcluirEditora extends javax.swing.JFrame {
+public class ExcluirLivro extends javax.swing.JFrame {
     
-    ControleEditora controleEditora;
-    Editora editora;
+    ControleLivro controleLivro;
+    Livro livro;
 
-    public ExcluirEditora() {
-        controleEditora = new ControleEditora();
+    public ExcluirLivro() {
+        controleLivro = new ControleLivro();
         initComponents();
     }
 
@@ -31,7 +32,7 @@ public class ExcluirEditora extends javax.swing.JFrame {
         jLblTitulo = new javax.swing.JLabel();
         jBtnExcluir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jListEditoras = new javax.swing.JList<>();
+        jListLivros = new javax.swing.JList<>();
         jLblInstrucao1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -43,26 +44,26 @@ public class ExcluirEditora extends javax.swing.JFrame {
         });
 
         jLblTitulo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLblTitulo.setText("Excluir Editora");
+        jLblTitulo.setText("Excluir Livro");
 
         jBtnExcluir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jBtnExcluir.setText("Excluir Editora");
+        jBtnExcluir.setText("Excluir Livro");
         jBtnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnExcluirActionPerformed(evt);
             }
         });
 
-        jListEditoras.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jListEditoras.addMouseListener(new java.awt.event.MouseAdapter() {
+        jListLivros.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListLivros.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jListEditorasMouseClicked(evt);
+                jListLivrosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jListEditoras);
+        jScrollPane1.setViewportView(jListLivros);
 
         jLblInstrucao1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLblInstrucao1.setText("Selecione a Editora que deseja excluir:");
+        jLblInstrucao1.setText("Selecione o livro que deseja excluir:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,40 +104,40 @@ public class ExcluirEditora extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        int index = jListEditoras.getSelectedIndex();
+        int index = jListLivros.getSelectedIndex();
         if (index != -1){  
-            DefaultListModel dlm = (DefaultListModel) jListEditoras.getModel();
-            editora = (Editora) dlm.getElementAt(index);
-            if (editora != null) {
-                if (controleEditora.excluirEditora(editora)) {
-                    JOptionPane.showMessageDialog(null, "Editora Excluída!");
+            DefaultListModel dlm = (DefaultListModel) jListLivros.getModel();
+            livro = (Livro) dlm.getElementAt(index);
+            if (livro != null) {
+                if (controleLivro.excluirLivro(livro)) {
+                    JOptionPane.showMessageDialog(null, "Livro Excluído!");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Editora não foi excluída");
+                    JOptionPane.showMessageDialog(null, "Livro não foi excluído");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Editora não encontrada");
+                JOptionPane.showMessageDialog(null, "Livro não encontrado");
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Selecione uma Editora!");
+            JOptionPane.showMessageDialog(null, "Selecione um Livro!");
         }    
     }//GEN-LAST:event_jBtnExcluirActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         DefaultListModel listModel = new DefaultListModel();
-        List listEditora = new ArrayList();
-        listEditora = controleEditora.carregarEditora();
-        if (listEditora != null) {
-            Iterator i = listEditora.iterator();
+        List listLivro = new ArrayList();
+        listLivro = controleLivro.carregarLivros();
+        if (listLivro != null) {
+            Iterator i = listLivro.iterator();
             while (i.hasNext()) {
-                Editora deptList = (Editora) i.next();
+                Livro deptList = (Livro) i.next();
                 listModel.addElement(deptList);
             }
-            jListEditoras.setModel(listModel);
+            jListLivros.setModel(listModel);
         } 
     }//GEN-LAST:event_formWindowActivated
 
-    private void jListEditorasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListEditorasMouseClicked
-    }//GEN-LAST:event_jListEditorasMouseClicked
+    private void jListLivrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListLivrosMouseClicked
+    }//GEN-LAST:event_jListLivrosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -155,14 +156,30 @@ public class ExcluirEditora extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ExcluirEditora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExcluirLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ExcluirEditora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExcluirLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ExcluirEditora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExcluirLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ExcluirEditora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExcluirLivro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -183,7 +200,7 @@ public class ExcluirEditora extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ExcluirEditora().setVisible(true);
+                new ExcluirLivro().setVisible(true);
             }
         });
     }
@@ -192,7 +209,7 @@ public class ExcluirEditora extends javax.swing.JFrame {
     private javax.swing.JButton jBtnExcluir;
     private javax.swing.JLabel jLblInstrucao1;
     private javax.swing.JLabel jLblTitulo;
-    private javax.swing.JList<String> jListEditoras;
+    private javax.swing.JList<String> jListLivros;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

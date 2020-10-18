@@ -1,20 +1,21 @@
 package control;
 
-import Dao.DaoAutor;
+import Dao.DaoLivro;
 import java.util.List;
-import model.Autor;
+import model.Livro;
 import org.hibernate.HibernateException;
 
-public class ControleAutor {
-    DaoAutor acessohibernateautor;
+
+public class ControleLivro {
+    DaoLivro acessohibernatelivro;
     
-    public ControleAutor(){
-        acessohibernateautor = new DaoAutor();
+    public ControleLivro(){
+        acessohibernatelivro = new DaoLivro();
     }
     
-    public int gravarAutor(Autor autor){
+    public int gravarLivro(Livro livro){
         try{
-            acessohibernateautor.gravar(autor);
+            acessohibernatelivro.gravar(livro);
             return 1;
         }catch (HibernateException e){
             e.printStackTrace();
@@ -22,18 +23,18 @@ public class ControleAutor {
         }
     }
     
-    public List carregarAutores(){
+    public List carregarLivros(){
         try{
-            return acessohibernateautor.carregarTudoOrdenado(Autor.class, "nome");
+            return acessohibernatelivro.carregarTudoOrdenado(Livro.class, "titulo");
         }catch (HibernateException e){ 
             e.printStackTrace();
             return null;
         }
     }
     
-    public boolean excluirAutor(Autor autor) {
+    public boolean excluirLivro(Livro livro) {
         try {
-            acessohibernateautor.excluir(autor);
+            acessohibernatelivro.excluir(livro);
             return true;
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -41,9 +42,9 @@ public class ControleAutor {
         }
     }
     
-    public boolean alterarAutor(Autor autor) {
+    public boolean alterarLivro(Livro livro) {
         try {
-            acessohibernateautor.alterar(autor);
+            acessohibernatelivro.alterar(livro);
             return true;
         } catch (HibernateException e) {
             e.printStackTrace();

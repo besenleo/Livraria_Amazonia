@@ -159,10 +159,10 @@ public class EditarEditora extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         DefaultListModel listModel = new DefaultListModel();
-        List listDepartamento = new ArrayList();
-        listDepartamento = controleEditora.carregarEditora();
-        if (listDepartamento != null) {
-            Iterator i = listDepartamento.iterator();
+        List listEditora = new ArrayList();
+        listEditora = controleEditora.carregarEditora();
+        if (listEditora != null) {
+            Iterator i = listEditora.iterator();
             while (i.hasNext()) {
                 Editora deptList = (Editora) i.next();
                 listModel.addElement(deptList);
@@ -188,7 +188,7 @@ public class EditarEditora extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Autor não Encontrado!");
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Selecione um autor!");
+            JOptionPane.showMessageDialog(null, "Selecione uma editora!");
         }
     }//GEN-LAST:event_jListEditorasMouseClicked
 
