@@ -1,21 +1,22 @@
 package control;
 
-import Dao.DaoAutor;
+import Dao.DaoEditora;
 import java.util.List;
 import model.Autor;
+import model.Editora;
 import org.hibernate.HibernateException;
 
-public class ControleAutor {
-    DaoAutor acessohibernateautor;
-    
-    public ControleAutor(){
-        acessohibernateautor = new DaoAutor();
+
+public class ControleEditora {
+    DaoEditora acessoHibernateEditora;
+
+    public ControleEditora() {
+        this.acessoHibernateEditora =  new DaoEditora();
     }
     
-    public int gravarAutor(Autor autor){
+    public Integer gravarEditora(Editora editora){
         try{
-            acessohibernateautor.gravar(autor);
-            System.out.println(autor);
+            acessoHibernateEditora.gravar(editora);
             return 1;
         }catch (HibernateException e){
             e.printStackTrace();
@@ -23,18 +24,18 @@ public class ControleAutor {
         }
     }
     
-    public List carregarAutores(){
+    public List carregarEditora(){
         try{
-            return acessohibernateautor.carregarTudoOrdenado(Autor.class, "nome");
+            return acessoHibernateEditora.carregarTudoOrdenado(Editora.class, "nome");
         }catch (HibernateException e){ 
             e.printStackTrace();
             return null;
         }
     }
     
-    public boolean excluirAutor(Autor autor) {
+    public boolean excluirEditora(Editora editora) {
         try {
-            acessohibernateautor.excluir(autor);
+            acessoHibernateEditora.excluir(editora);
             return true;
         } catch (HibernateException e) {
             e.printStackTrace();
@@ -42,9 +43,9 @@ public class ControleAutor {
         }
     }
     
-    public boolean alterarAutor(Autor autor) {
+    public boolean alterarEditora(Editora editora) {
         try {
-            acessohibernateautor.alterar(autor);
+            acessoHibernateEditora.alterar(editora);
             return true;
         } catch (HibernateException e) {
             e.printStackTrace();

@@ -1,6 +1,7 @@
 package Dao;
 
 import model.Autor;
+import model.Editora;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -21,6 +22,7 @@ public class HibernateConfig {
     public void criaSessionFactory() {
         Configuration configuration = new Configuration();
         configuration.addAnnotatedClass(Autor.class);
+        configuration.addAnnotatedClass(Editora.class);
         ServiceRegistry serviceRegistry  = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);
     }
