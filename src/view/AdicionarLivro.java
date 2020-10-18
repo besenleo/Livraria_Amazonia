@@ -5,18 +5,37 @@
  */
 package view;
 
+import control.ControleAutor;
+import control.ControleEditora;
+import control.ControleLivro;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import model.Autor;
+import model.Editora;
+import model.Livro;
+import java.util.Set;
+import java.util.HashSet;
 
-/**
- *
- * @author Leo
- */
+
 public class AdicionarLivro extends javax.swing.JFrame {
-
+    
+    ControleAutor controleAutor;
+    ControleEditora controleEditora;
+    ControleLivro controleLivro;
+    Set<Autor> autores;
+    Editora editora;
+    
     /**
      * Creates new form AdicionarLivro
      */
     public AdicionarLivro() {
+        controleAutor = new ControleAutor();
+        controleEditora = new ControleEditora();
+        controleLivro = new ControleLivro();
         initComponents();
     }
 
@@ -29,27 +48,34 @@ public class AdicionarLivro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLblTituloPagina = new javax.swing.JLabel();
         jLblTitulo = new javax.swing.JLabel();
-        jLblTituloLivro = new javax.swing.JLabel();
         jTxtTitulo = new javax.swing.JTextField();
         jLblPreco = new javax.swing.JLabel();
         jTxtPreco = new javax.swing.JTextField();
         jLblAutorID = new javax.swing.JLabel();
-        jTxtAutorID = new javax.swing.JTextField();
-        jTxtEditoraID = new javax.swing.JTextField();
-        jLblEditoraID = new javax.swing.JLabel();
         jBtnAdicionar = new javax.swing.JButton();
-        jBtnAutores = new javax.swing.JButton();
-        jBtnListarEditoras = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListAutores = new javax.swing.JList<>();
+        jLblEditora = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jListEditoras = new javax.swing.JList<>();
+        jLblCodigo = new javax.swing.JLabel();
+        jTxtCodigo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
-        jLblTitulo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLblTitulo.setText("Adicionar Livro");
+        jLblTituloPagina.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLblTituloPagina.setText("Adicionar Livro");
 
-        jLblTituloLivro.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLblTituloLivro.setText("Titulo:");
+        jLblTitulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLblTitulo.setText("Titulo:");
 
         jTxtTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,89 +87,85 @@ public class AdicionarLivro extends javax.swing.JFrame {
         jLblPreco.setText("Preço:");
 
         jLblAutorID.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLblAutorID.setText("ID do Autor:");
-
-        jLblEditoraID.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLblEditoraID.setText("ID da Editora:");
+        jLblAutorID.setText("Selecione o(s) Autor(es):");
 
         jBtnAdicionar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnAdicionar.setText("Adicionar Livro");
-
-        jBtnAutores.setText("Listar Autores");
-        jBtnAutores.addActionListener(new java.awt.event.ActionListener() {
+        jBtnAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnAutoresActionPerformed(evt);
+                jBtnAdicionarActionPerformed(evt);
             }
         });
 
-        jBtnListarEditoras.setText("Listar Editoras");
-        jBtnListarEditoras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnListarEditorasActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setViewportView(jListAutores);
+
+        jLblEditora.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLblEditora.setText("Selecione a Editora:");
+
+        jListEditoras.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListEditoras.setToolTipText("");
+        jScrollPane2.setViewportView(jListEditoras);
+
+        jLblCodigo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLblCodigo.setText("Código de Barras:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(268, 268, 268)
-                        .addComponent(jLblTitulo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLblTituloLivro)
-                            .addComponent(jLblPreco)
-                            .addComponent(jLblAutorID)
-                            .addComponent(jLblEditoraID))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTxtEditoraID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                                    .addComponent(jTxtAutorID, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTxtPreco, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jBtnAutores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jBtnListarEditoras, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))))))
-                .addContainerGap(204, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jBtnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addGap(54, 54, 54))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLblTituloPagina)
+                .addGap(271, 271, 271))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLblCodigo)
+                    .addComponent(jLblTitulo)
+                    .addComponent(jLblPreco)
+                    .addComponent(jLblAutorID)
+                    .addComponent(jLblEditora))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTxtTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                    .addComponent(jTxtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jTxtCodigo))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLblTitulo)
-                .addGap(62, 62, 62)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLblTituloLivro)
-                            .addComponent(jTxtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
-                        .addComponent(jTxtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLblPreco))
+                .addComponent(jLblTituloPagina)
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblAutorID)
-                    .addComponent(jTxtAutorID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnAutores))
-                .addGap(35, 35, 35)
+                    .addComponent(jLblCodigo)
+                    .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblEditoraID)
-                    .addComponent(jTxtEditoraID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnListarEditoras))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                    .addComponent(jLblTitulo)
+                    .addComponent(jTxtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblPreco)
+                    .addComponent(jTxtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLblAutorID)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLblEditora)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addComponent(jBtnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -154,15 +176,84 @@ public class AdicionarLivro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTxtTituloActionPerformed
 
-    private void jBtnAutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAutoresActionPerformed
-        JFrame listarAutores = new ListarAutores();
-        listarAutores.setVisible(true);
-    }//GEN-LAST:event_jBtnAutoresActionPerformed
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // Adicionando conteúdo na JList de autores
+        DefaultListModel listModelAutor = new DefaultListModel();
+        List listAutor = new ArrayList();
+        listAutor = controleAutor.carregarAutores();
+        if (listAutor != null) {
+            Iterator i = listAutor.iterator();
+            while (i.hasNext()) {
+                Autor deptList = (Autor) i.next();
+                listModelAutor.addElement(deptList);
+            }
+            jListAutores.setModel(listModelAutor);
+        }
+        
+        //Adicionando conteudo na JList de editoras
+        DefaultListModel listModelEditora = new DefaultListModel();
+        List listDepartamento = new ArrayList();
+        listDepartamento = controleEditora.carregarEditora();
+        if (listDepartamento != null) {
+            Iterator i = listDepartamento.iterator();
+            while (i.hasNext()) {
+                Editora deptList = (Editora) i.next();
+                listModelEditora.addElement(deptList);
+            }
+            jListEditoras.setModel(listModelEditora);
+        } 
+    }//GEN-LAST:event_formWindowActivated
 
-    private void jBtnListarEditorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnListarEditorasActionPerformed
-        JFrame listarEditoras = new ListarEditoras();
-        listarEditoras.setVisible(true);
-    }//GEN-LAST:event_jBtnListarEditorasActionPerformed
+    private void jBtnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAdicionarActionPerformed
+        // Pega todos os indexs selecionados
+        autores = new HashSet<>();
+        int[] indexSelecionados = jListAutores.getSelectedIndices();
+        int index = jListEditoras.getSelectedIndex();
+        
+        // Verifica se a lista de index e o index da editora estao vazios 
+        if(indexSelecionados.length != 0 && index != -1){
+            // adiciona os Autores no HashSet
+            for (int i = 0; i < indexSelecionados.length; i++) {
+                Object sel = jListAutores.getModel().getElementAt(indexSelecionados[i]) ;
+                Autor autor = (Autor) sel;
+                autores.add(autor);
+            }
+            // adiciona o objeto Editora na variavel editora
+            DefaultListModel dlm = (DefaultListModel) jListEditoras.getModel();
+            editora = (Editora) dlm.getElementAt(index);
+            
+            //Remove espaços desnecessarios do campos
+            jTxtTitulo.setText(jTxtTitulo.getText().trim());
+            jTxtPreco.setText(jTxtPreco.getText().trim());
+            jTxtCodigo.setText(jTxtCodigo.getText().trim());
+            
+            // Valida se o codigo de barras tem 13 carecteres
+            if(jTxtCodigo.getText().length() == 13){
+                // Faz uma ultima validaçao nos campos necessarios para adição
+                if(!jTxtTitulo.getText().isEmpty() && !jTxtPreco.getText().isEmpty()){
+                    //Instancia o livro e adiciona no banco
+                    Livro livro = new Livro();
+                    livro.setIsbn(jTxtCodigo.getText());
+                    livro.setTitulo(jTxtTitulo.getText());
+                    livro.setPreco(Float.parseFloat(jTxtPreco.getText()));
+                    livro.setAutores(autores);
+                    livro.setEditora(editora);
+                
+                    if(controleLivro.gravarLivro(livro) == 1){
+                        JOptionPane.showMessageDialog(null, "Livro adicionado com sucesso!");
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Não foi possivel adicionar o livro!");
+                    };
+                }else{
+                    JOptionPane.showMessageDialog(null, "Voce deixou de preencher ou selecionar algum campo!");
+                }   
+            }else{
+                JOptionPane.showMessageDialog(null, "O Código de Barras não possui 13 caracteres!");
+            }  
+        }else{
+            JOptionPane.showMessageDialog(null, "Voce NÃO selecionou um autor e/ou uma editora!");
+        }   
+    }//GEN-LAST:event_jBtnAdicionarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,15 +292,17 @@ public class AdicionarLivro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAdicionar;
-    private javax.swing.JButton jBtnAutores;
-    private javax.swing.JButton jBtnListarEditoras;
     private javax.swing.JLabel jLblAutorID;
-    private javax.swing.JLabel jLblEditoraID;
+    private javax.swing.JLabel jLblCodigo;
+    private javax.swing.JLabel jLblEditora;
     private javax.swing.JLabel jLblPreco;
     private javax.swing.JLabel jLblTitulo;
-    private javax.swing.JLabel jLblTituloLivro;
-    private javax.swing.JTextField jTxtAutorID;
-    private javax.swing.JTextField jTxtEditoraID;
+    private javax.swing.JLabel jLblTituloPagina;
+    private javax.swing.JList<String> jListAutores;
+    private javax.swing.JList<String> jListEditoras;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTxtCodigo;
     private javax.swing.JTextField jTxtPreco;
     private javax.swing.JTextField jTxtTitulo;
     // End of variables declaration//GEN-END:variables

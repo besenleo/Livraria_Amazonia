@@ -1,8 +1,15 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import model.Livro;
+import control.ControleLivro;
+
 
 public class ListarLivros extends javax.swing.JFrame {
-
+    
+    ControleLivro controleLivros = new ControleLivro();
     
     public ListarLivros() {
         initComponents();
@@ -22,6 +29,11 @@ public class ListarLivros extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jTableLivros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -31,7 +43,7 @@ public class ListarLivros extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Titulo", "Autor", "Preço", "Editora", "ISBN"
+                "ISBN", "Titulo", "Autor(es)", "Editora", "Preço"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -58,6 +70,20 @@ public class ListarLivros extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        List listLivros = new ArrayList();
+        listLivros = controleLivros.carregarLivros();
+        
+        DefaultTableModel dtm = (DefaultTableModel) this.jTableLivros.getModel();
+        dtm.setRowCount(0);
+        for (Object livro : listLivros){
+            Livro l = (Livro) livro;
+            Object[] obj = new Object[]{l.getIsbn(), l.getTitulo(), l.nomeAutores(),
+                                        l.getEditora(), l.getPreco()};
+            dtm.addRow(obj);
+        }
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments

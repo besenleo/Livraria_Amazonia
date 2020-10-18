@@ -2,6 +2,7 @@ package Dao;
 
 import model.Autor;
 import model.Editora;
+import model.Livro;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -23,6 +24,7 @@ public class HibernateConfig {
         Configuration configuration = new Configuration();
         configuration.addAnnotatedClass(Autor.class);
         configuration.addAnnotatedClass(Editora.class);
+        configuration.addAnnotatedClass(Livro.class);
         ServiceRegistry serviceRegistry  = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);
     }
