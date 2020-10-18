@@ -4,13 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.TableModel;
 import control.ControleAutor;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import model.Autor;
 
 public class ListarAutores extends javax.swing.JFrame {
     
     ControleAutor controleAutor = new ControleAutor();
     Autor autor;
+    TableRowSorter trs;
+    
 
     public ListarAutores() {
         initComponents();
@@ -27,6 +33,7 @@ public class ListarAutores extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAutores = new javax.swing.JTable();
+        filterText = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -57,6 +64,12 @@ public class ListarAutores extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableAutores);
 
+        filterText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                filterTextKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,13 +78,15 @@ public class ListarAutores extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(filterText)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(filterText, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
         );
 
         pack();
@@ -89,8 +104,23 @@ public class ListarAutores extends javax.swing.JFrame {
             Object[] obj = new Object[]{a.getIdAutor(), a.getNome(), a.getfNome()};
             dtm.addRow(obj);
         }
+
     }//GEN-LAST:event_formWindowActivated
 
+    private void filterTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextKeyReleased
+
+    TableRowSorter trs;    
+    for(int i = 0; i < 2; i++){
+        jTableAutores.setRowSorter(trs);
+        trs = new TableRowSorter(this.jTableAutores.getModel());
+        String text = filterText.getText();
+          if (text.trim().length() == 0) {
+             trs.setRowFilter(null);
+          } else {
+             trs.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+          }
+    }//GEN-LAST:event_filterTextKeyReleased
+    }
     /**
      * @param args the command line arguments
      */
@@ -130,6 +160,7 @@ public class ListarAutores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField filterText;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableAutores;
     // End of variables declaration//GEN-END:variables
