@@ -102,9 +102,6 @@ public class AdicionarAutor extends javax.swing.JFrame {
     private void jBtnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAdicionarActionPerformed
         autor = new Autor();
         
-        /*autor.setIdAutor(Integer.parseInt(jTxtAutorID.getText()));*/
-        System.out.println(jTxtNome.getText() + jTxtSobrenome.getText());
-        
         autor.setNome(jTxtNome.getText().trim());
         autor.setfNome(jTxtSobrenome.getText().trim());
         

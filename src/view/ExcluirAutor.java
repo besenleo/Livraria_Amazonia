@@ -123,10 +123,10 @@ public class ExcluirAutor extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         DefaultListModel listModel = new DefaultListModel();
-        List listDepartamento = new ArrayList();
-        listDepartamento = controleAutor.carregarAutores();
-        if (listDepartamento != null) {
-            Iterator i = listDepartamento.iterator();
+        List listAutor = new ArrayList();
+        listAutor = controleAutor.carregarAutores();
+        if (listAutor != null) {
+            Iterator i = listAutor.iterator();
             while (i.hasNext()) {
                 Autor deptList = (Autor) i.next();
                 listModel.addElement(deptList);
