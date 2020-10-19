@@ -5,11 +5,14 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import model.Livro;
 import control.ControleLivro;
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
 
 
 public class ListarLivros extends javax.swing.JFrame {
     
     ControleLivro controleLivros = new ControleLivro();
+    TableRowSorter trs;
     
     public ListarLivros() {
         initComponents();
@@ -26,6 +29,8 @@ public class ListarLivros extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableLivros = new javax.swing.JTable();
+        filterTextLivros = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -56,15 +61,34 @@ public class ListarLivros extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableLivros);
 
+        filterTextLivros.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                filterTextLivrosKeyReleased(evt);
+            }
+        });
+
+        jLabel1.setText("Barra de Pesquisa:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(filterTextLivros))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(filterTextLivros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE))
         );
 
         pack();
@@ -84,6 +108,19 @@ public class ListarLivros extends javax.swing.JFrame {
             dtm.addRow(obj);
         }
     }//GEN-LAST:event_formWindowActivated
+
+    private void filterTextLivrosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTextLivrosKeyReleased
+        for(int i = 0; i < 2; i++){
+            jTableLivros.setRowSorter(trs);
+            trs = new TableRowSorter(this.jTableLivros.getModel());
+            String text = filterTextLivros.getText();
+            if (text.trim().length() == 0) {
+                trs.setRowFilter(null);
+            } else {
+                trs.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+            }
+        }
+    }//GEN-LAST:event_filterTextLivrosKeyReleased
 
     /**
      * @param args the command line arguments
@@ -122,6 +159,8 @@ public class ListarLivros extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField filterTextLivros;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableLivros;
     // End of variables declaration//GEN-END:variables
