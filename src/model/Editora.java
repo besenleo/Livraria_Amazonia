@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,10 +14,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "publishers")
-public class Editora{
+public class Editora implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "publisher_id")
+    @Column(name = "publisher_id", unique=true)
     private Integer idEditora;
     
     @Column(name = "name")

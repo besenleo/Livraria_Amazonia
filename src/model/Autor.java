@@ -21,7 +21,7 @@ import javax.persistence.FetchType;
 public class Autor implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "author_id")
+    @Column(name = "author_id", unique=true)
     private Integer idAutor;
     
     @Column(name = "name")

@@ -24,7 +24,7 @@ import model.Autor;
 public class Livro implements Serializable{
     
     @Id
-    @Column(name = "isbn")
+    @Column(name = "isbn", unique=true)
     private String isbn;
     
     @Column(name = "title")
