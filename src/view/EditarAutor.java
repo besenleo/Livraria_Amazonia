@@ -142,8 +142,6 @@ public class EditarAutor extends javax.swing.JFrame {
 
     private void jBtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarActionPerformed
         // Editando o conteúdo do autor selecionado na JList
-        DefaultListModel dlm = (DefaultListModel) jListAutores.getModel();
-        autor = (Autor) dlm.getElementAt(jListAutores.getSelectedIndex());
         if (autor != null) {
             autor.setNome(jTxtNome.getText());
             autor.setfNome(jTxtSobrenome.getText());
@@ -166,8 +164,8 @@ public class EditarAutor extends javax.swing.JFrame {
         if (listAutor != null) {
             Iterator i = listAutor.iterator();
             while (i.hasNext()) {
-                Autor deptList = (Autor) i.next();
-                listModel.addElement(deptList);
+                Autor autorList = (Autor) i.next();
+                listModel.addElement(autorList);
             }
             jListAutores.setModel(listModel);
         }

@@ -69,4 +69,28 @@ public class Editora implements Serializable{
     public String toString(){
         return this.getNome();
     }
+    
+    @Override
+    public boolean equals(Object outro) {
+        
+        if(this == outro) {
+            return true;
+        }
+        
+        if(outro == null) {
+            return false;
+        }
+        
+	if( ! (outro instanceof Editora) ){
+            return false;
+        }
+        
+	Editora outroEditora = (Editora)outro;
+        
+        if(! (this.getIdEditora()== outroEditora.getIdEditora()) ){
+            return false;
+        }
+        
+	return true;
+    }
 }

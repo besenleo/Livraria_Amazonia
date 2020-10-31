@@ -106,4 +106,27 @@ public class Livro implements Serializable{
         return this.getTitulo();
     }
     
+    @Override
+    public boolean equals(Object outro) {
+        
+        if(this == outro) {
+            return true;
+        }
+        
+        if(outro == null) {
+            return false;
+        }
+        
+	if( ! (outro instanceof Livro) ){
+            return false;
+        }
+        
+	Livro outroLivro = (Livro)outro;
+        
+        if(! (this.getIsbn()== outroLivro.getIsbn()) ){
+            return false;
+        }
+        
+	return true;
+    }
 }

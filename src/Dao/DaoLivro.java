@@ -15,14 +15,4 @@ public class DaoLivro extends DaoBasico{
     
     public DaoLivro(){
     }
-    
-    @Override
-    public List carregarTudoOrdenado(Class clas, String ordem) throws HibernateException {
-        Session session = hibernateConfig.openSession();
-        Criteria criteria = session.createCriteria(clas);
-        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);// Evitar duplicadas
-        List lista = criteria.list();
-        session.close();
-        return lista;
-    }
 }

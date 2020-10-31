@@ -79,4 +79,28 @@ public class Autor implements Serializable{
         valor += this.fNome;
         return valor;
     }
+    
+    @Override
+    public boolean equals(Object outro) {
+        
+        if(this == outro) {
+            return true;
+        }
+        
+        if(outro == null) {
+            return false;
+        }
+        
+	if( ! (outro instanceof Autor) ){
+            return false;
+        }
+        
+	Autor outroAutor = (Autor)outro;
+        
+        if(! (this.getIdAutor()== outroAutor.getIdAutor()) ){
+            return false;
+        }
+        
+	return true;
+    }
 }

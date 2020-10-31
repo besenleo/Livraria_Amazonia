@@ -1,6 +1,9 @@
 package Dao;
 
 import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -38,10 +41,12 @@ public class DaoBasico {
         session.close();
     }
     
-    public List carregarTudoOrdenado(Class clas, String ordem) throws HibernateException {
+    @SuppressWarnings("unchecked")
+    public List carregarTudoOrdenado(Class clas, String ordem) throws HibernateException {        
         Session session = hibernateConfig.openSession();
         Criteria criteria = session.createCriteria(clas);
         criteria.addOrder(Order.asc(ordem));
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);// Evitar duplicadas
         List lista = criteria.list();
         session.close();
         return lista;

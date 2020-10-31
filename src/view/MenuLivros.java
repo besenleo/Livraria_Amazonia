@@ -59,6 +59,11 @@ public class MenuLivros extends javax.swing.JFrame {
 
         jBtnEditar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jBtnEditar.setText("Editar Livro");
+        jBtnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnEditarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,6 +119,11 @@ public class MenuLivros extends javax.swing.JFrame {
         JFrame excluirLivro = new ExcluirLivro();
         excluirLivro.setVisible(true);
     }//GEN-LAST:event_jBtnRemoverActionPerformed
+
+    private void jBtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarActionPerformed
+        JFrame editarLivro = new EditarLivro();
+        editarLivro.setVisible(true);
+    }//GEN-LAST:event_jBtnEditarActionPerformed
 
     /**
      * @param args the command line arguments

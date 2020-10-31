@@ -141,8 +141,6 @@ public class EditarEditora extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarActionPerformed
-        DefaultListModel dlm = (DefaultListModel) jListEditoras.getModel();
-        editora = (Editora) dlm.getElementAt(jListEditoras.getSelectedIndex());
         if (editora != null) {
             editora.setNome(jTxtNome.getText());
             editora.setUrl(jTxtUrl.getText());
@@ -164,8 +162,8 @@ public class EditarEditora extends javax.swing.JFrame {
         if (listEditora != null) {
             Iterator i = listEditora.iterator();
             while (i.hasNext()) {
-                Editora deptList = (Editora) i.next();
-                listModel.addElement(deptList);
+                Editora editoraList = (Editora) i.next();
+                listModel.addElement(editoraList);
             }
             jListEditoras.setModel(listModel);
         } 
@@ -185,7 +183,7 @@ public class EditarEditora extends javax.swing.JFrame {
                 jTxtNome.setText(editora.getNome());
                 jTxtUrl.setText(editora.getUrl());
             } else {
-                JOptionPane.showMessageDialog(null, "Autor não Encontrado!");
+                JOptionPane.showMessageDialog(null, "Editora não Encontrado!");
             }
         }else{
             JOptionPane.showMessageDialog(null, "Selecione uma editora!");

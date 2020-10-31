@@ -27,34 +27,49 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="jBtnAdicionar" min="-2" pref="174" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jLblTitulo" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLblPreco" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLblCodigo" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLblEditora" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jTxtPreco" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
+                              <Component id="jTxtTitulo" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jCbxEditora" alignment="0" pref="395" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="jLblCodigoBarras" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLblInstrucao" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="0" min="-2" pref="533" max="-2" attributes="0"/>
+                          <Component id="jLblInstrucao2" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace pref="117" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jLblTituloPagina" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="271" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jLblCodigo" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLblTitulo" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLblPreco" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLblAutorID" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLblEditora" alignment="1" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jLblTituloPagina" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="299" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jBtnEditar" min="-2" pref="174" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jTxtTitulo" pref="365" max="32767" attributes="0"/>
-                  <Component id="jTxtPreco" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jTxtCodigo" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jCbxEditora" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace pref="129" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -63,10 +78,16 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLblTituloPagina" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <Component id="jLblInstrucao" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jLblInstrucao2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLblCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTxtCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLblCodigoBarras" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -78,19 +99,14 @@
                   <Component id="jLblPreco" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTxtPreco" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLblAutorID" min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="94" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLblEditora" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLblEditora" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jCbxEditora" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-              <Component id="jBtnAdicionar" min="-2" pref="54" max="-2" attributes="0"/>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Component id="jBtnEditar" min="-2" pref="54" max="-2" attributes="0"/>
+              <EmptySpace pref="38" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -101,7 +117,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Adicionar Livro"/>
+        <Property name="text" type="java.lang.String" value="Editar Livro"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLblTitulo">
@@ -127,44 +143,17 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTxtPreco">
     </Component>
-    <Component class="javax.swing.JLabel" name="jLblAutorID">
+    <Component class="javax.swing.JButton" name="jBtnEditar">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Selecione o(s) Autor(es):"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="jBtnAdicionar">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Adicionar Livro"/>
+        <Property name="text" type="java.lang.String" value="Editar Livro"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnAdicionarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnEditarActionPerformed"/>
       </Events>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JList" name="jListAutores">
-          <Properties>
-            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="0"/>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
-      </SubComponents>
-    </Container>
     <Component class="javax.swing.JLabel" name="jLblEditora">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -181,8 +170,6 @@
         <Property name="text" type="java.lang.String" value="C&#xf3;digo de Barras:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTxtCodigo">
-    </Component>
     <Component class="javax.swing.JComboBox" name="jCbxEditora">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -192,6 +179,52 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JList" name="jListLivros">
+          <Properties>
+            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+              <StringArray count="0"/>
+            </Property>
+            <Property name="selectionMode" type="int" value="0"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jListLivrosMouseClicked"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="jLblInstrucao">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Selecione o livro que voc&#xea; deseja editar:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblInstrucao2">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Adicione o novos valores:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLblCodigoBarras">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
