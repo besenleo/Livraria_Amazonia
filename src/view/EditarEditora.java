@@ -141,7 +141,20 @@ public class EditarEditora extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarActionPerformed
-        if (editora != null) {
+        //Remove espaços desnecessarios do campos
+        jTxtNome.setText(jTxtNome.getText().trim());
+        jTxtUrl.setText(jTxtUrl.getText().trim());
+        
+        /**Validação dos campos**/
+        if(jTxtNome.getText().isEmpty() || jTxtUrl.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Você deixou de preencher ou selecionar algum campo!");
+        }else if(jTxtNome.getText().length() > 30 || jTxtNome.getText().length() <= 0){
+            JOptionPane.showMessageDialog(null, "O nome da editora deve conter 1 até 30 caracteres.");
+        }else if(jTxtUrl.getText().length() > 80 || jTxtUrl.getText().length() < 5){
+            JOptionPane.showMessageDialog(null, "A URL da editora deve conter 5 até 25 caracteres.");
+        }else if(editora == null){
+            JOptionPane.showMessageDialog(null, "Voce não selecionou uma editora!");
+        }else{
             editora.setNome(jTxtNome.getText());
             editora.setUrl(jTxtUrl.getText());
             
@@ -150,8 +163,6 @@ public class EditarEditora extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Não foi possivel atualizar a editora");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Editora não Encontrada!");
         }
     }//GEN-LAST:event_jBtnEditarActionPerformed
 

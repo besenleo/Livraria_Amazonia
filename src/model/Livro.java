@@ -106,6 +106,12 @@ public class Livro implements Serializable{
         return this.getTitulo();
     }
     
+    // Esse overrides abaixo solucionam o problema de comparação entre objetos do Set<Livro>
+    @Override
+    public int hashCode() {
+        return getIsbn().hashCode();
+    }
+       
     @Override
     public boolean equals(Object outro) {
         

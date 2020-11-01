@@ -98,15 +98,28 @@ public class AdicionarEditora extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAdicionarActionPerformed
-        editora = new Editora();
+        //Remove espaços desnecessarios do campos
+        jTxtNome.setText(jTxtNome.getText().trim());
+        jTxtURL.setText(jTxtURL.getText().trim());
         
-        editora.setNome(jTxtNome.getText());
-        editora.setUrl(jTxtURL.getText());
-        
-        if(controleEditora.gravarEditora(editora) == 1){
-            JOptionPane.showMessageDialog(null, "Editora cadastrada com sucesso!");
+        /**Validação dos campos**/
+        if(jTxtNome.getText().isEmpty() || jTxtURL.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Você deixou de preencher ou selecionar algum campo!");
+        }else if(jTxtNome.getText().length() > 30 || jTxtNome.getText().length() <= 0){
+            JOptionPane.showMessageDialog(null, "O nome da editora deve conter 1 até 25 caracteres.");
+        }else if(jTxtURL.getText().length() > 80 || jTxtURL.getText().length() < 5){
+            JOptionPane.showMessageDialog(null, "A URL da editora deve conter 1 até 80 caracteres.");
         }else{
-            JOptionPane.showMessageDialog(null, "Não foi possivel cadastrar a editora!");
+            editora = new Editora();
+        
+            editora.setNome(jTxtNome.getText());
+            editora.setUrl(jTxtURL.getText());
+        
+            if(controleEditora.gravarEditora(editora) == 1){
+                JOptionPane.showMessageDialog(null, "Editora cadastrada com sucesso!");
+            }else{
+                JOptionPane.showMessageDialog(null, "Não foi possivel cadastrar a editora!");
+            }
         }
     }//GEN-LAST:event_jBtnAdicionarActionPerformed
 

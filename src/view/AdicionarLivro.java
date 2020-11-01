@@ -201,53 +201,106 @@ public class AdicionarLivro extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowActivated
 
     private void jBtnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAdicionarActionPerformed
+        float valor; // valor do livro
         // Pega todos os indexs selecionados
         autores = new HashSet<>();
         int[] indexSelecionados = jListAutores.getSelectedIndices();
         int index = jCbxEditora.getSelectedIndex();
         
-        // Verifica se a lista de index e o index da editora estao vazios 
-        if(indexSelecionados.length != 0 && index != -1){
+        //Remove espaços desnecessarios do campos
+        jTxtCodigo.setText(jTxtCodigo.getText().trim());
+        jTxtTitulo.setText(jTxtTitulo.getText().trim());
+        jTxtPreco.setText(jTxtPreco.getText().trim());
+        
+        //Tenta fazer o parse do valor no campo float
+        try{
+            valor = Float.parseFloat(jTxtPreco.getText());
+        }catch (Exception e){
+            valor = -1;
+        }
+        /**Validação dos campos**/
+        if(jTxtTitulo.getText().isEmpty() || jTxtPreco.getText().isEmpty() || jTxtCodigo.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Voce deixou de preencher ou selecionar algum campo!");
+        }else if(valor < 0){
+            JOptionPane.showMessageDialog(null, "Verifique o valor do livro. \n Certifique que seja um valor positivo e esteja no formato adequado\n Exemplo: 25.00");
+        }else if(jTxtCodigo.getText().length() != 13){
+            JOptionPane.showMessageDialog(null, "O código de barras deve conter exatamente 13 caracteres.");
+        }else if(jTxtTitulo.getText().length() > 25 || jTxtTitulo.getText().length() <= 0){
+            JOptionPane.showMessageDialog(null, "O titulo deve conter 1 até 25 caracteres.");
+        }else if(valor > 9999999999l){
+            JOptionPane.showMessageDialog(null, "O valor execedeu o valor maximo: RS$ 9.999.999.999,99");
+        }else if(indexSelecionados.length == 0 || index == -1){
+            JOptionPane.showMessageDialog(null, "Voce não selecionou um autor e/ou uma editora!");
+        }else{ //Começa o processamento
             // adiciona os Autores no HashSet
             for (int i = 0; i < indexSelecionados.length; i++) {
                 Object sel = jListAutores.getModel().getElementAt(indexSelecionados[i]) ;
                 Autor autor = (Autor) sel;
                 autores.add(autor);
             }
+            
             // adiciona o objeto Editora na variavel editora
             editora = (Editora) jCbxEditora.getSelectedItem();
             
-            //Remove espaços desnecessarios do campos
-            jTxtTitulo.setText(jTxtTitulo.getText().trim());
-            jTxtPreco.setText(jTxtPreco.getText().trim());
-            jTxtCodigo.setText(jTxtCodigo.getText().trim());
-            
-            // Valida se o codigo de barras tem 13 carecteres
-            if(jTxtCodigo.getText().length() == 13){
-                // Faz uma ultima validaçao nos campos necessarios para adição
-                if(!jTxtTitulo.getText().isEmpty() && !jTxtPreco.getText().isEmpty()){
-                    //Instancia o livro e adiciona no banco
-                    Livro livro = new Livro();
-                    livro.setIsbn(jTxtCodigo.getText());
-                    livro.setTitulo(jTxtTitulo.getText());
-                    livro.setPreco(Float.parseFloat(jTxtPreco.getText()));
-                    livro.setAutores(autores);
-                    livro.setEditora(editora);
+            //Instancia o livro e adiciona no banco
+            Livro livro = new Livro();
+            livro.setIsbn(jTxtCodigo.getText());
+            livro.setTitulo(jTxtTitulo.getText());
+            livro.setPreco(Float.parseFloat(jTxtPreco.getText()));
+            livro.setAutores(autores);
+            livro.setEditora(editora);
                 
-                    if(controleLivro.gravarLivro(livro) == 1){
-                        JOptionPane.showMessageDialog(null, "Livro adicionado com sucesso!");
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Não foi possivel adicionar o livro!");
-                    };
-                }else{
-                    JOptionPane.showMessageDialog(null, "Voce deixou de preencher ou selecionar algum campo!");
-                }   
+            if(controleLivro.gravarLivro(livro) == 1){
+                JOptionPane.showMessageDialog(null, "Livro adicionado com sucesso!");
             }else{
-                JOptionPane.showMessageDialog(null, "O Código de Barras não possui 13 caracteres!");
-            }  
-        }else{
-            JOptionPane.showMessageDialog(null, "Voce NÃO selecionou um autor e/ou uma editora!");
-        }   
+                JOptionPane.showMessageDialog(null, "Não foi possivel adicionar o livro!");
+            };
+            
+        }
+//        
+//        
+//        // Verifica se a lista de index e o index da editora estao vazios 
+//        if(indexSelecionados.length != 0 && index != -1){
+//            // adiciona os Autores no HashSet
+//            for (int i = 0; i < indexSelecionados.length; i++) {
+//                Object sel = jListAutores.getModel().getElementAt(indexSelecionados[i]) ;
+//                Autor autor = (Autor) sel;
+//                autores.add(autor);
+//            }
+//            // adiciona o objeto Editora na variavel editora
+//            editora = (Editora) jCbxEditora.getSelectedItem();
+//            
+////            //Remove espaços desnecessarios do campos
+////            jTxtTitulo.setText(jTxtTitulo.getText().trim());
+////            jTxtPreco.setText(jTxtPreco.getText().trim());
+////            jTxtCodigo.setText(jTxtCodigo.getText().trim());
+////            
+//            // Valida se o codigo de barras tem 13 carecteres
+//            if(jTxtCodigo.getText().length() == 13){
+//                // Faz uma ultima validaçao nos campos necessarios para adição
+//                if(!jTxtTitulo.getText().isEmpty() && !jTxtPreco.getText().isEmpty()){
+//                    //Instancia o livro e adiciona no banco
+//                    Livro livro = new Livro();
+//                    livro.setIsbn(jTxtCodigo.getText());
+//                    livro.setTitulo(jTxtTitulo.getText());
+//                    livro.setPreco(Float.parseFloat(jTxtPreco.getText()));
+//                    livro.setAutores(autores);
+//                    livro.setEditora(editora);
+//                
+//                    if(controleLivro.gravarLivro(livro) == 1){
+//                        JOptionPane.showMessageDialog(null, "Livro adicionado com sucesso!");
+//                    }else{
+//                        JOptionPane.showMessageDialog(null, "Não foi possivel adicionar o livro!");
+//                    };
+//                }else{
+//                    JOptionPane.showMessageDialog(null, "Voce deixou de preencher ou selecionar algum campo!");
+//                }   
+//            }else{
+//                JOptionPane.showMessageDialog(null, "O Código de Barras não possui 13 caracteres!");
+//            }  
+//        }else{
+//            JOptionPane.showMessageDialog(null, "Voce NÃO selecionou um autor e/ou uma editora!");
+//        }   
     }//GEN-LAST:event_jBtnAdicionarActionPerformed
 
     /**

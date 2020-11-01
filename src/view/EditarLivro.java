@@ -31,6 +31,8 @@ public class EditarLivro extends javax.swing.JFrame {
     Editora editora;
     Livro livro;
     DefaultComboBoxModel modelCombo;
+    DefaultListModel listModelAutor;
+    int[] indicesAutores; //Mantem controle dos indices dos Autores do Livro selecionado
     
     /**
      * Creates new form AdicionarLivro
@@ -65,6 +67,9 @@ public class EditarLivro extends javax.swing.JFrame {
         jLblInstrucao = new javax.swing.JLabel();
         jLblInstrucao2 = new javax.swing.JLabel();
         jLblCodigoBarras = new javax.swing.JLabel();
+        jLblAutores = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListAutores = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -119,6 +124,11 @@ public class EditarLivro extends javax.swing.JFrame {
 
         jLblCodigoBarras.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
+        jLblAutores.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLblAutores.setText("Selecione o(s) Autor(es):");
+
+        jScrollPane1.setViewportView(jListAutores);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,48 +136,47 @@ public class EditarLivro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
+                        .addGap(91, 91, 91)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLblTitulo)
-                            .addComponent(jLblPreco)
                             .addComponent(jLblCodigo)
-                            .addComponent(jLblEditora))
+                            .addComponent(jLblPreco)
+                            .addComponent(jLblEditora)
+                            .addComponent(jLblAutores))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTxtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTxtTitulo)
-                                .addComponent(jCbxEditora, 0, 395, Short.MAX_VALUE))
-                            .addComponent(jLblCodigoBarras)))
+                            .addComponent(jLblCodigoBarras)
+                            .addComponent(jTxtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCbxEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
+                        .addGap(97, 97, 97)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLblInstrucao)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLblInstrucao2))))
-                .addContainerGap(117, Short.MAX_VALUE))
+                            .addComponent(jLblInstrucao2)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(jBtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(96, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLblTituloPagina)
-                        .addGap(299, 299, 299))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jBtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))))
+                .addComponent(jLblTituloPagina)
+                .addGap(311, 311, 311))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLblTituloPagina)
-                .addGap(37, 37, 37)
+                .addGap(28, 28, 28)
                 .addComponent(jLblInstrucao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLblInstrucao2)
-                .addGap(17, 17, 17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLblCodigo)
                     .addComponent(jLblCodigoBarras))
@@ -179,13 +188,17 @@ public class EditarLivro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLblPreco)
                     .addComponent(jTxtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLblEditora)
                     .addComponent(jCbxEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLblAutores)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jBtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -221,63 +234,116 @@ public class EditarLivro extends javax.swing.JFrame {
             }
             jCbxEditora.setModel(modelCombo);
         }
+        
+        // Adicionando conteúdo na JList de autores
+        listModelAutor = new DefaultListModel();
+        List listAutor = new ArrayList();
+        listAutor = controleAutor.carregarAutores();
+        if (listAutor != null) {
+            Iterator i = listAutor.iterator();
+            while (i.hasNext()) {
+                Autor deptList = (Autor) i.next();
+                listModelAutor.addElement(deptList);
+            }
+            jListAutores.setModel(listModelAutor);
+        }
 
     }//GEN-LAST:event_formWindowActivated
 
     private void jBtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarActionPerformed
-        editora = (Editora) jCbxEditora.getSelectedItem();
+        float valor; // valor do livro
+        editora = (Editora) jCbxEditora.getSelectedItem(); //editora selecionada
+        int[] novosAutores = jListAutores.getSelectedIndices(); //autores selecionados
+       
+        //Remove espaços desnecessarios do campos
+        jTxtTitulo.setText(jTxtTitulo.getText().trim());
+        jTxtPreco.setText(jTxtPreco.getText().trim());
         
-        // Verifica se a lista de index e o index da editora estao vazios 
-        if(livro != null){
-            //Remove espaços desnecessarios do campos
-            jTxtTitulo.setText(jTxtTitulo.getText().trim());
-            jTxtPreco.setText(jTxtPreco.getText().trim());
-            
-            // Faz uma ultima validaçao nos campos necessarios para adição
-            if(!jTxtTitulo.getText().isEmpty() && !jTxtPreco.getText().isEmpty()){
-                //Instancia o livro e adiciona no banco
-                Livro livro = new Livro();
-                livro.setIsbn(livro.getIsbn());
-                livro.setTitulo(jTxtTitulo.getText());
-                livro.setPreco(Float.parseFloat(jTxtPreco.getText()));
-                livro.setEditora(editora);
+        //Tenta fazer o parse do valor no campo float
+        try{
+            valor = Float.parseFloat(jTxtPreco.getText());
+        }catch (Exception e){
+            valor = -1;
+        }
+        /**Validação dos campos**/
+        if(jTxtTitulo.getText().isEmpty() || jTxtPreco.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Voce deixou de preencher ou selecionar algum campo!");
+        }else if(valor < 0){
+            JOptionPane.showMessageDialog(null, "Verifique o valor do livro. \n Certifique que seja um valor positivo e esteja no formato adequado\n Exemplo: 25.00");
+        }else if(jTxtTitulo.getText().length() > 25 || jTxtTitulo.getText().length() <= 0){
+            JOptionPane.showMessageDialog(null, "O titulo deve conter 1 até 25 caracteres.");
+        }else if(valor > 9999999999l){
+            JOptionPane.showMessageDialog(null, "O valor execedeu o valor maximo: RS$ 9.999.999.999,99");
+        }else if(livro == null){
+            JOptionPane.showMessageDialog(null, "Voce não selecionou um livro!");
+        }else{ //Começa o processamento
+            livro.setIsbn(livro.getIsbn());
+            livro.setTitulo(jTxtTitulo.getText());
+            livro.setPreco(Float.parseFloat(jTxtPreco.getText()));
+            livro.setEditora(editora);
+            // Caso nao selecionou nenhum autor vai usar os que estavam seleciono anteriormente
+            if (indicesAutores == null || 
+                novosAutores.length == 0 ||
+                novosAutores.equals(indicesAutores)){
                 livro.setAutores(livro.getAutores());
-                
-                if(controleLivro.alterarLivro(livro)){
-                    JOptionPane.showMessageDialog(null, "Livro editado com sucesso!");
-                }else{
-                    JOptionPane.showMessageDialog(null, "Não foi possivel editar o livro!");
-                };
+                JOptionPane.showMessageDialog(null, "Nenhum autor novo selecionado. Usamos o(s) mesmo(s) autor(es)!");
             }else{
-                JOptionPane.showMessageDialog(null, "Voce deixou de preencher ou selecionar algum campo!");
-            }   
-        }else{
-            JOptionPane.showMessageDialog(null, "Voce NÃO selecionou um livro!");
-        }   
+                autores = new HashSet<Autor>();
+                for(int i = 0; i < novosAutores.length; i++){
+                    autores.add((Autor) listModelAutor.getElementAt(novosAutores[i]));
+                }
+                livro.setAutores(autores);
+            }
+                
+            if(controleLivro.alterarLivro(livro)){
+                JOptionPane.showMessageDialog(null, "Livro editado com sucesso!");
+            }else{
+                JOptionPane.showMessageDialog(null, "Não foi possivel editar o livro!");
+            };
+        }
     }//GEN-LAST:event_jBtnEditarActionPerformed
 
     private void jListLivrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListLivrosMouseClicked
         int index = jListLivros.getSelectedIndex();
+        int iAutores = 0; // Ajuda a fazer o loop pelo indicesAutores
         
-        if (index != -1){  
-        
-            DefaultListModel dlm = (DefaultListModel) jListLivros.getModel();
-            Livro livro = (Livro) dlm.getElementAt(index);
+        DefaultListModel dlm = (DefaultListModel) jListLivros.getModel();
+        livro = (Livro) dlm.getElementAt(index);
             
-            jLblCodigoBarras.setText("");
-            jTxtTitulo.setText("");
-            jTxtPreco.setText("");
+        jLblCodigoBarras.setText("");
+        jTxtTitulo.setText("");
+        jTxtPreco.setText("");
+        jListAutores.clearSelection();
         
-            if (livro != null) {
-                jLblCodigoBarras.setText(livro.getIsbn());
-                jTxtTitulo.setText(livro.getTitulo());
-                jTxtPreco.setText(Float.toString(livro.getPreco()));
-                jCbxEditora.setSelectedIndex(modelCombo.getIndexOf(livro.getEditora()));
-            } else {
-                JOptionPane.showMessageDialog(null, "Livro não Encontrado!");
+        if (livro != null) {
+            jLblCodigoBarras.setText(livro.getIsbn());
+            jTxtTitulo.setText(livro.getTitulo());
+            jTxtPreco.setText(Float.toString(livro.getPreco()));
+            jCbxEditora.setSelectedIndex(modelCombo.getIndexOf(livro.getEditora()));
+            /** Seleciona os autores automaticamento quando seleciona o Livro **/
+            // Ve quantos elementos o meu array vai ter
+            for(int i = 0; i < listModelAutor.getSize(); i++){
+                Autor autorJLista = (Autor) listModelAutor.getElementAt(i);
+                if(livro.getAutores().contains(autorJLista)){
+                    iAutores ++;
+                }    
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "Selecione um Livro!");
+            indicesAutores = new int[iAutores]; // Declara o array
+            iAutores = 0; //Zera o contador para o novo loop
+            // Adiciona os valores nesse novo array
+            for(int k = 0; k < listModelAutor.getSize(); k++){
+                Autor autorJLista = (Autor) listModelAutor.getElementAt(k);
+                if(livro.getAutores().contains(autorJLista)){
+                    indicesAutores[iAutores] = k;
+                    iAutores ++;
+                }
+            }
+                
+            if(indicesAutores != null){
+                jListAutores.setSelectedIndices(indicesAutores);
+            }    
+        } else {
+            JOptionPane.showMessageDialog(null, "Livro não Encontrado!");
         }
     }//GEN-LAST:event_jListLivrosMouseClicked
 
@@ -320,6 +386,7 @@ public class EditarLivro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnEditar;
     private javax.swing.JComboBox<String> jCbxEditora;
+    private javax.swing.JLabel jLblAutores;
     private javax.swing.JLabel jLblCodigo;
     private javax.swing.JLabel jLblCodigoBarras;
     private javax.swing.JLabel jLblEditora;
@@ -328,7 +395,9 @@ public class EditarLivro extends javax.swing.JFrame {
     private javax.swing.JLabel jLblPreco;
     private javax.swing.JLabel jLblTitulo;
     private javax.swing.JLabel jLblTituloPagina;
+    private javax.swing.JList<String> jListAutores;
     private javax.swing.JList<String> jListLivros;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTxtPreco;
     private javax.swing.JTextField jTxtTitulo;

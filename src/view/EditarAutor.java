@@ -141,8 +141,20 @@ public class EditarAutor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarActionPerformed
-        // Editando o conteúdo do autor selecionado na JList
-        if (autor != null) {
+        //Remove espaços desnecessarios do campos
+        jTxtNome.setText(jTxtNome.getText().trim());
+        jTxtSobrenome.setText(jTxtSobrenome.getText().trim());
+        
+        /**Validação dos campos**/
+        if(jTxtNome.getText().isEmpty() || jTxtSobrenome.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Você deixou de preencher ou selecionar algum campo!");
+        }else if(jTxtNome.getText().length() > 25 || jTxtNome.getText().length() <= 0){
+            JOptionPane.showMessageDialog(null, "O nome do autor deve conter 1 até 25 caracteres.");
+        }else if(jTxtSobrenome.getText().length() > 25 || jTxtSobrenome.getText().length() <= 0){
+            JOptionPane.showMessageDialog(null, "O sobrenome do autor deve conter 1 até 25 caracteres.");
+        }else if(autor == null){
+            JOptionPane.showMessageDialog(null, "Voce não selecionou um autor!");
+        }else{
             autor.setNome(jTxtNome.getText());
             autor.setfNome(jTxtSobrenome.getText());
             
@@ -151,8 +163,6 @@ public class EditarAutor extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Não foi possivel atualizar o autor");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Autor não Encontrado!");
         }
     }//GEN-LAST:event_jBtnEditarActionPerformed
 

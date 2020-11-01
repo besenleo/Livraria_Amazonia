@@ -80,6 +80,12 @@ public class Autor implements Serializable{
         return valor;
     }
     
+    // Esse override soluciona o problema de comparação entre objetos do Set<Autor>
+    @Override
+    public int hashCode() {
+        return getIdAutor().hashCode();
+    }
+    
     @Override
     public boolean equals(Object outro) {
         

@@ -100,15 +100,28 @@ public class AdicionarAutor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAdicionarActionPerformed
-        autor = new Autor();
+        //Remove espaços desnecessarios do campos
+        jTxtNome.setText(jTxtNome.getText().trim());
+        jTxtSobrenome.setText(jTxtSobrenome.getText().trim());
         
-        autor.setNome(jTxtNome.getText().trim());
-        autor.setfNome(jTxtSobrenome.getText().trim());
-        
-        if(controleAutor.gravarAutor(autor) == 1){
-            JOptionPane.showMessageDialog(null, "Autor cadastrado com sucesso");
+        /**Validação dos campos**/
+        if(jTxtNome.getText().isEmpty() || jTxtSobrenome.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Você deixou de preencher ou selecionar algum campo!");
+        }else if(jTxtNome.getText().length() > 25 || jTxtNome.getText().length() <= 0){
+            JOptionPane.showMessageDialog(null, "O nome do autor deve conter 1 até 25 caracteres.");
+        }else if(jTxtSobrenome.getText().length() > 25 || jTxtSobrenome.getText().length() <= 0){
+            JOptionPane.showMessageDialog(null, "O sobrenome do autor deve conter 1 até 25 caracteres.");
         }else{
-            JOptionPane.showMessageDialog(null, "Não foi possivel gravar o autor!");
+            autor = new Autor();
+        
+            autor.setNome(jTxtNome.getText().trim());
+            autor.setfNome(jTxtSobrenome.getText().trim());
+        
+            if(controleAutor.gravarAutor(autor) == 1){
+                JOptionPane.showMessageDialog(null, "Autor cadastrado com sucesso");
+            }else{
+                JOptionPane.showMessageDialog(null, "Não foi possivel gravar o autor!");
+            }
         }
     }//GEN-LAST:event_jBtnAdicionarActionPerformed
 
